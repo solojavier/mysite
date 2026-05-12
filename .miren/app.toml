@@ -1,4 +1,19 @@
 name = 'mysite'
 post_import = ''
-env = []
 include = []
+
+[[env]]
+key = "PIDFILE"
+value = "/tmp/server.pid"
+
+[[env]]
+key = "BRIDGETOWN_ENV"
+value = "production"
+
+[services.web]
+port = 4000
+
+[build]
+onbuild = [
+  "bin/bridgetown deploy"
+]
